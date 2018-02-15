@@ -1,0 +1,7 @@
+---
+# tasks file for railsapp
+- name: Install New Rails App and start server
+  shell: source ~/.rvm/scripts/rvm  &&  rails new railsapp && cd railsapp && rails s -d -b 0.0.0.0
+  args:
+    executable: /bin/bash
+

@@ -1,0 +1,13 @@
+---
+# tasks file for dependencies
+- name: Install NodeJS
+  apt: name=nodejs
+  become: yes
+
+- name: Install Postgres & Dependencies
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - postgresql
+    - postgresql-contrib	
+    - libpq-dev
