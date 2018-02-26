@@ -4,7 +4,7 @@
   apt: name=nginx
   become: yes
 - name: write the Nginx config file
-  template: src=/home/ubuntu/redunt/roles/nginx/nginx_default dest=/etc/nginx/sites-available/default  
+  template: src=~/ansible-rails/roles/nginx/nginx_default dest=/etc/nginx/sites-available/default  
   become: yes
   notify:
   - restart Nginx

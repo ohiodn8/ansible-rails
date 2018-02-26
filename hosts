@@ -1,2 +1,4 @@
 [webservers]
-your_private_ip or url
+## 173.10.2.25
+
+localhost ansible_connection=local
