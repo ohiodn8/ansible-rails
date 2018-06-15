@@ -9,6 +9,7 @@
     - curl
     - ruby
     - ruby-railties
+    - ruby-bundler
 - name: curl rvm
   ignore_errors: True
   shell: curl -sSL https://get.rvm.io | bash 
