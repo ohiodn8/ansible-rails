@@ -9,20 +9,13 @@
     - curl
     - ruby
     - ruby-railties
-- name: Get RVM URL
-  get_url:
-    url: https://get.rvm.io
-    dest: ~/.rvm/scripts/rvm
-- name: source RVM - Test
-  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm && rvm install ruby
-  args:
-    executable: /bin/bash
-  register: source
-- debug: var=source.stdout_lines
-
 - name: curl rvm
+  ignore_errors: True
   shell: curl -sSL https://get.rvm.io | bash 
+
 - name: Source rvm script&Install Bundler&Rails
-  shell: source ~/.rvm/scripts/rvm  && rvm install ruby && gem install bundler --no-ri --no-rdoc && gem install rails --no-ri --no-rdoc
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby && gem install bundler --no-ri --no-rdoc && gem install rails --no-ri --no-rdoc
+  register: source
   args:
     executable: /bin/bash
+- debug: var=source.stdout_lines

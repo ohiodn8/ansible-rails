@@ -11,3 +11,12 @@
     - postgresql
     - postgresql-contrib	
     - libpq-dev
+
+- name: display post install message
+  debug:
+    msg:
+      - 'Things left to do:'
+      - 'RUN THE COMMANDS BELOW:'
+      - 'ruby -v && rails -v'
+      - 'source ~/.rvm/scripts/rvm'
+      - 'ruby -v && rails -v'
