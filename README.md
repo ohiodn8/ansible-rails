@@ -23,6 +23,6 @@
 
 * Make sure your ansible connection works <small>(e.g. <code>ansible -m ping localhost</code> OR <code>ansible -m ping webservers</code>)</small>
 
-* Ansible script made off of tutorial +> http://www.dsolc.com/blogs/5-deploying-rails-app-to-ec2-instance-via-github 
+* Ansible script made off of tutorial => http://www.dsolc.com/blogs/5-deploying-rails-app-to-ec2-instance-via-github 
 
 * Database: using default Sqlite3 <small>(The playbook will start Postgres Installation, but decided not to go to far)</small>
