@@ -1,6 +1,6 @@
 galaxy_info:
-  author: your name
-  description: your description
+  author: Odion (ohiodn8)
+  description: Jenkins Play
   company: your company (optional)
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -32,14 +32,14 @@ galaxy_info:
   #
   # platforms is a list of platforms, and each platform has a name and a list of versions.
   #
-  # platforms:
-  # - name: Fedora
-  #   versions:
-  #   - all
+  platforms:
+  - name: Debian
+    versions:
+    - all
   #   - 25
-  # - name: SomePlatform
-  #   versions:
-  #   - all
+  - name: Ubuntu
+    versions:
+    - all
   #   - 1.0
   #   - 7
   #   - 99.99
