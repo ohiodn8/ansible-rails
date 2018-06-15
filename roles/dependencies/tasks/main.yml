@@ -15,7 +15,7 @@
 - name: display post install message
   debug:
     msg:
-      - 'Things left to do:'
+      - 'THINGS LEFT TO DO:'
       - 'RUN THE COMMANDS BELOW:'
       - 'ruby -v && rails -v'
       - 'source ~/.rvm/scripts/rvm'

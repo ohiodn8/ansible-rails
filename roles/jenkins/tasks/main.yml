@@ -1,0 +1,27 @@
+---
+# tasks file for jenkins
+- name: Install Java & Java Runtime
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - default-jre
+    - default-jdk
+- name: Jenkins Key
+  become: yes
+  shell: wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+- name: Jenkins > Echo Debian Binary Library
+  become: yes
+  shell: sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+- name: Update apt packages & Install Jenkins
+  become: yes
+  apt:
+    update_cache: yes
+    name: jenkins
+- name: View Jenkins Password
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+  become: yes
+  register: cat
+  args:
+    executable: /bin/bash
+- debug: var=cat.stdout_lines
+
