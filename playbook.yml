@@ -6,4 +6,4 @@
     - nginx
     - ruby
     - dependencies
-    - railsapp
+#    - railsapp
