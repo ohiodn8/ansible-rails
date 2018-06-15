@@ -1,8 +1,9 @@
 # ansible-rails
 
+
 ## How to use Playbook:
 
-* <b>Install Ansible on server (below command for ubuntu): </b>
+* <b>Install Ansible on Ubuntu Server: </b>
   <pre><code>sudo apt-get install software-properties-common && sudo apt-add-repository ppa:ansible/ansible && sudo apt-get update && sudo apt-get install ansible</code></pre>
 
 * <b>Clone Repository:</b> 
