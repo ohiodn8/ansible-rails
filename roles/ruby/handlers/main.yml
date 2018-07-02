@@ -1,0 +1,9 @@
+---
+# handlers for Ruby Bundler
+- name: Handler to Install Ruby Bundler Gem
+  ignore_errors: True
+  register: gem
+  shell: gem install bundler
+  become: true
+- debug: var=gem.stdout_lines
+

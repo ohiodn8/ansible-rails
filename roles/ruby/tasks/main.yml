@@ -9,13 +9,18 @@
     - curl
     - ruby
     - ruby-railties
-    - ruby-bundler
 - name: curl rvm
   ignore_errors: True
   shell: curl -sSL https://get.rvm.io | bash 
+- name: Install Ruby Bundler Gem and Rails Gem
+  ignore_errors: True
+  register: gem
+  shell: gem install bundler --no-ri --no-rdoc
+  become: true
+- debug: var=gem.stdout_lines
 
 - name: Source rvm script&Install Bundler&Rails
-  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby && gem install bundler --no-ri --no-rdoc && gem install rails --no-ri --no-rdoc
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby && gem install rails --no-ri --no-rdoc
   register: source
   args:
     executable: /bin/bash
