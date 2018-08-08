@@ -3,11 +3,11 @@
 - name: Install Nginx
   apt: name=nginx
   become: yes
-- name: write the Nginx config file
-  template: src=~/ansible-rails/roles/nginx/nginx_default dest=/etc/nginx/sites-available/default  
-  become: yes
-  notify:
-  - restart Nginx
+#- name: write the Nginx config file
+#  template: src=~/ansible-rails/roles/nginx/nginx_default dest=/etc/nginx/sites-available/default  
+#  become: yes
+#  notify:
+#  - restart Nginx
 - name: ensure Nginx is running (and enable it at boot)
   service: name=nginx state=started enabled=yes
   become: yes
