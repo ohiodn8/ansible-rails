@@ -29,3 +29,5 @@
 * Database: using default Sqlite3 <small>(The playbook will start Postgres Installation, but decided not to go to far)</small>
 
 * This playbook also includes jenkins installation, but has been disabled in the playbook.yml file
+
+* (To run the playbook, the playbook has to be in /home/[user], otherwise change the path in ansible.cfg e.g. ~/ansible-rails)
