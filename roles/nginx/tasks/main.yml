@@ -1,8 +1,14 @@
 ---
 # tasks file for nginx
+#- name: Install Nginx
+#  apt: name=nginx
+#  become: yes
+
 - name: Install Nginx
-  apt: name=nginx
+  action: >
+    {{ ansible_pkg_mgr }} name=nginx state=present update_cache=yes
   become: yes
+
 #- name: write the Nginx config file
 #  template: src=~/ansible-rails/roles/nginx/nginx_default dest=/etc/nginx/sites-available/default  
 #  become: yes

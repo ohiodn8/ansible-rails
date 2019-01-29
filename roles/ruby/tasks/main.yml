@@ -2,26 +2,44 @@
 # tasks file for ruby
 #- name: Pull Key from gpg Server
 #  command: gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-- name: Install Curl, Ruby and Rails - Sudo Style
-  apt: name={{ item }} state=present
+#- name: Install Curl, Ruby and Rails - Sudo Style
+#  apt: name={{ item }} state=present
+#  become: yes
+#  with_items:
+#    - curl
+#    - ruby
+#    - ruby-railties
+
+- name: Install Curl, Ruby and Rails
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   become: yes
   with_items:
     - curl
     - ruby
     - ruby-railties
+
 - name: curl rvm
-  ignore_errors: True
   shell: curl -sSL https://get.rvm.io | bash 
+
 - name: Install Ruby Bundler Gem and Rails Gem
-  ignore_errors: True
   register: gem
   shell: gem install bundler --no-ri --no-rdoc
   become: true
 - debug: var=gem.stdout_lines
 
-- name: Source rvm script&Install Bundler&Rails
-  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby && gem install rails --no-ri --no-rdoc
+- name: Source rvm script & rvm install ruby
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby
+  register: ruby
+  args:
+    executable: /bin/bash
+- debug: var=ruby.stdout_lines
+
+
+- name: Source RVM & Install Rails
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install rails
   register: source
   args:
     executable: /bin/bash
 - debug: var=source.stdout_lines
+

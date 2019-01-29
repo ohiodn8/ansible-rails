@@ -1,8 +1,9 @@
 ---
 # tasks file for dependencies
 - name: Install NodeJS
-  apt: name=nodejs
   become: yes
+  action: >
+    {{ ansible_pkg_mgr }} name=nodejs state=present update_cache=yes
 
 - name: display post install message
   debug:
