@@ -4,6 +4,13 @@
 #  apt: name=nginx
 #  become: yes
 
+- name: Install Epel Release when CentOS or RedHat
+  become: yes
+  command: yum install epel-release -y
+  when: (ansible_facts['distribution'] == "CentOS") or
+        (ansible_facts['distribution'] == "RedHat") or 
+        (ansible_facts['distribution'] == "Amazon")
+
 - name: Install Nginx
   action: >
     {{ ansible_pkg_mgr }} name=nginx state=present update_cache=yes
