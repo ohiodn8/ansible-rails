@@ -3,7 +3,7 @@
 - name: Install Epel Release when Amazon Linux
   become: yes
   shell: amazon-linux-extras install epel
-  when: (ansible_distribution == "Amazon")
+  when: ansible_distribution == "Amazon"
   ignore_errors: True
 
 - name: Install Epel Release when CentOS or RedHat

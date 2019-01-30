@@ -11,6 +11,11 @@
     - curl
     - ruby
 
+- name: Install Ruby _ Amazon Style
+  shell: amazon-linux-extras install ruby2.4 -y 
+  when: ansible_distribution == "Amazon"
+  become: yes
+
 - name: Install Ruby-Railties _ Sudo Style
   action: >
     {{ ansible_pkg_mgr }} name=ruby-railties state=present update_cache=yes
