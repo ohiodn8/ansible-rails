@@ -33,8 +33,10 @@
 - name: Install Ruby Bundler Gem _ DEBIAN
   register: gem
   when: ansible_os_family == "Debian"
-  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install bundler --no-ri --no-rdoc
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install bundler
   become: true
+  args:
+    executable: /bin/bash
 - debug: var=gem.stdout_lines
 
 - name: Install Ruby Bundler Gem _ REDHAT
@@ -46,6 +48,7 @@
 - name: Source RVM & Install Rails
   shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install rails
   register: source
+  become: true
   args:
     executable: /bin/bash
 - debug: var=source.stdout_lines
