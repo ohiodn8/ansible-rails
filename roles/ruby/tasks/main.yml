@@ -2,39 +2,41 @@
 # tasks file for ruby
 #- name: Pull Key from gpg Server
 #  command: gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-#- name: Install Curl, Ruby and Rails - Sudo Style
-#  apt: name={{ item }} state=present
-#  become: yes
-#  with_items:
-#    - curl
-#    - ruby
-#    - ruby-railties
 
-- name: Install Curl, Ruby and Rails
+- name: Install Curl, Ruby _ Sudo Style
   action: >
     {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   become: yes
   with_items:
     - curl
     - ruby
-    - ruby-railties
+
+- name: Install Ruby-Railties _ Sudo Style
+  action: >
+    {{ ansible_pkg_mgr }} name=ruby-railties state=present update_cache=yes
+  when: ansible_os_family == "Debian" 
+  become: yes
 
 - name: curl rvm
   shell: curl -sSL https://get.rvm.io | bash 
 
-- name: Install Ruby Bundler Gem and Rails Gem
+- name: Source rvm script & rvm install ruby
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby
+  args:
+    executable: /bin/bash
+
+- name: Install Ruby Bundler Gem _ DEBIAN
   register: gem
-  shell: gem install bundler --no-ri --no-rdoc
+  when: ansible_os_family == "Debian"
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install bundler --no-ri --no-rdoc
   become: true
 - debug: var=gem.stdout_lines
 
-- name: Source rvm script & rvm install ruby
-  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && rvm install ruby
-  register: ruby
-  args:
-    executable: /bin/bash
-- debug: var=ruby.stdout_lines
-
+- name: Install Ruby Bundler Gem _ REDHAT
+  register: gem
+  when: ansible_os_family == "RedHat"
+  shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install bundler >> background 2>&1 &
+  become: true
 
 - name: Source RVM & Install Rails
   shell: source {{ ansible_env.HOME }}/.rvm/scripts/rvm  && gem install rails

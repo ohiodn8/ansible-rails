@@ -1,0 +1,15 @@
+---
+# tasks file for Epel Release
+- name: Install Epel Release when Amazon Linux
+  become: yes
+  shell: amazon-linux-extras install epel
+  when: (ansible_distribution == "Amazon")
+  ignore_errors: True
+
+- name: Install Epel Release when CentOS or RedHat
+  become: yes
+  yum: name=epel-release state=present
+  when: (ansible_distribution == "RedHat") or
+        (ansible_distribution == "CentOS")
+  ignore_errors: True
+

@@ -3,6 +3,7 @@
 - hosts: webservers
 
   roles:
+    - epel
     - nginx
     - ruby
     - dependencies
