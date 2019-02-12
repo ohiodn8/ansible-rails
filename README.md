@@ -3,9 +3,6 @@
 
 ## How to use Playbook:
 
-* <b>Install Ansible on Ubuntu Server: </b>
-  <pre><code>sudo apt-get install software-properties-common && sudo apt-add-repository ppa:ansible/ansible && sudo apt-get update && sudo apt-get install ansible</code></pre>
-
 * <b>Clone Repository:</b> 
   <pre><code>git clone https://github.com/ohiodn8/ansible-rails.git</code></pre>
   
@@ -14,7 +11,6 @@
   
 * <b>Run Playbook:</b>
   <pre><code>ansible-playbook playbook.yml</code></pre>
-
 
 
 
@@ -31,3 +27,13 @@
 * This playbook also includes jenkins installation, but has been disabled in the playbook.yml file
 
 * (To run the playbook, the playbook has to be in /home/[user], otherwise change the path in ansible.cfg e.g. ~/ansible-rails)
+
+
+### Update: Ansible Playbook Now Work on RedHat, CentOS, and Amazon Linux
+
+* It used to be on Ubuntu only (+ mint & Kubuntu), but I decided to expand the playbook.
+
+* Do not follow the ansible installation steps below; it'll work for ubuntu only. Head over to ansible documentation page for the other OSs.
+
+* <b>Install Ansible on Ubuntu Server: </b>
+  <pre><code>sudo apt-get install software-properties-common && sudo apt-add-repository ppa:ansible/ansible && sudo apt-get update && sudo apt-get install ansible</code></pre>
