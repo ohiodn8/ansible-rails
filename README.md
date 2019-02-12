@@ -1,6 +1,5 @@
 # ansible-rails
 
-
 ## How to use Playbook:
 
 * <b>Clone Repository:</b> 
@@ -8,6 +7,8 @@
   
 * <b>cd into repo folder:</b>
   <pre><code>cd ansible-rails</code></pre>
+  
+* <b>Edit the hosts file in the folder to your liking. As it is, it'll install Ruby on Rails (and its dependencies) on localhost.</b>  
   
 * <b>Run Playbook:</b>
   <pre><code>ansible-playbook playbook.yml</code></pre>
