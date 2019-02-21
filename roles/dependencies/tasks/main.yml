@@ -5,6 +5,9 @@
   action: >
     {{ ansible_pkg_mgr }} name=nodejs state=present update_cache=yes
 
+- name: Attempt to run source from bashscript
+  shell: . {{ rvm_source_file }} 
+
 - name: display post install message
   debug:
     msg:
