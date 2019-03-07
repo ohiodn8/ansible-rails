@@ -5,10 +5,10 @@
   action: >
     {{ ansible_pkg_mgr }} name=nodejs state=present update_cache=yes
 
-- name: Attempt to run source from bashscript
-  shell: . {{ rvm_source_file }} 
+- name: Attempt to Run Source With Ansible Raw
+  raw: source ~/.rvm/scripts/rvm
 
-- name: display post install message
+- name: Display Post Install Message
   debug:
     msg:
       - 'THINGS LEFT TO DO:'
