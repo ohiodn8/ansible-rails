@@ -5,9 +5,6 @@
   action: >
     {{ ansible_pkg_mgr }} name=nodejs state=present update_cache=yes
 
-- name: Attempt to Run Source With Ansible Raw
-  raw: source ~/.rvm/scripts/rvm
-
 - name: Display Post Install Message
   debug:
     msg:
